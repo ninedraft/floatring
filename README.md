@@ -1,4 +1,4 @@
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/ninedraft/floatring)](https://pkg.go.dev/github.com/ninedraft/floatring) [![report card](https://goreportcard.com/badge/github.com/ninedraft/floatring)](https://goreportcard.com/report/github.com/ninedraft/floatring)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/ninedraft/floatring)](https://pkg.go.dev/github.com/ninedraft/floatring) [![report card](https://goreportcard.com/badge/github.com/ninedraft/floatring)](https://goreportcard.com/report/github.com/ninedraft/floatring) [![codecov](https://codecov.io/gh/ninedraft/floatring/branch/master/graph/badge.svg)](https://codecov.io/gh/ninedraft/floatring)
 
 # floatring
 
