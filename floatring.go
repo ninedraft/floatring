@@ -9,7 +9,7 @@ type Buffer struct {
 	rc   int
 }
 
-// NewBuffer creates a new buffer with the given capacity.
+// New creates a new buffer with the given capacity.
 func New(cp int) *Buffer {
 	return &Buffer{
 		ring: make([]float64, cp),
@@ -102,6 +102,7 @@ func (buff *Buffer) DumpTo(dst []float64) []float64 {
 }
 
 // ForEach calls provided hook for each value in the buffer in the LIFO order.
+// This method does no allocations.
 func (buff *Buffer) ForEach(op func(x float64) bool) {
 	if buff.IsEmpty() {
 		return
@@ -135,6 +136,7 @@ func (buff *Buffer) forEachChunked(op func(x float64) bool) {
 }
 
 // Reset the buffer to a zero state. Doesn't change the capacity.
+// Can be used in pair with the sync.Pool.
 func (buff *Buffer) Reset() {
 	buff.wc = 0
 	buff.rc = 0
