@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        go: ["1.6", "1.9", "latest"]
+        go: ["1.6", "1.9", "^1.15"]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
