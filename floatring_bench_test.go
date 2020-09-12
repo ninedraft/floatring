@@ -6,7 +6,7 @@ import (
 	"github.com/ninedraft/floatring"
 )
 
-var buf1024 = floatring.NewBuffer(1024)
+var buf1024 = floatring.New(1024)
 
 func BenchmarkReadWrite1M(bench *testing.B) {
 	for i := 0; i < 1000000; i++ {

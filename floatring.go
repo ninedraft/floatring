@@ -10,7 +10,7 @@ type Buffer struct {
 }
 
 // NewBuffer creates a new buffer with the given capacity.
-func NewBuffer(cp int) *Buffer {
+func New(cp int) *Buffer {
 	return &Buffer{
 		ring: make([]float64, cp),
 	}

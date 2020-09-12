@@ -9,7 +9,7 @@ import (
 
 func TestBufferEmpty(test *testing.T) {
 	const N = 100
-	var empty = floatring.NewBuffer(0)
+	var empty = floatring.New(0)
 	for x := 0.0; x < N; x++ {
 		empty.WriteValue(x)
 	}
@@ -36,19 +36,18 @@ func TestBufferEmpty(test *testing.T) {
 }
 
 func TestBufferConsistency(test *testing.T) {
-	testBufferConsistency(test, 1, 1)
-	testBufferConsistency(test, 1, 50)
-	testBufferConsistency(test, 100, 50)
-	testBufferConsistency(test, 100, 51)
-	testBufferConsistency(test, 100, 200)
-	testBufferConsistency(test, 100, 0)
+	for n := 0; n < 100; n++ {
+		for size := 0; size < 100; size++ {
+			testBufferConsistency(test, n, size)
+		}
+	}
 }
 
 func testBufferConsistency(test *testing.T, n, size int) {
 	var name = fmt.Sprintf("values=%d  size=%d", n, size)
 	test.Run(name, func(test *testing.T) {
 		var values = make([]float64, n)
-		var ring = floatring.NewBuffer(size)
+		var ring = floatring.New(size)
 		for i := 0; i < n; i++ {
 			var x = float64(i)
 			values[i] = x
@@ -78,7 +77,7 @@ func TestBufferLen(test *testing.T) {
 	var t = func(size, expected, nWrite, nRead int) {
 		var name = fmt.Sprintf("size=%d  expected=%d  nWrite=%d  nRead=%d", size, expected, nWrite, nRead)
 		test.Run(name, func(test *testing.T) {
-			var buf = floatring.NewBuffer(size)
+			var buf = floatring.New(size)
 			for v := 0; v < nWrite; v++ {
 				buf.WriteValue(float64(v))
 			}
@@ -100,7 +99,7 @@ func TestBufferLen(test *testing.T) {
 }
 
 func TestBatchMethods(test *testing.T) {
-	var buf = floatring.NewBuffer(16)
+	var buf = floatring.New(16)
 	var values = make([]float64, 40)
 	for i := range values {
 		values[i] = float64(i)
@@ -126,7 +125,7 @@ func TestForEach(test *testing.T) {
 	var t = func(size, input int) {
 		var name = fmt.Sprintf("size=%d  input=%d", size, input)
 		test.Run(name, func(t *testing.T) {
-			var buf = floatring.NewBuffer(size)
+			var buf = floatring.New(size)
 			var values = testValues(input)
 			buf.Write(values)
 			var got []float64
