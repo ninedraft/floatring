@@ -87,6 +87,8 @@ func (buff *Buffer) Read(vv []float64) int {
 }
 
 // DumpTo returns the slice of values as [oldest...newest].
+// It tries to append values to the provided slice to avoid allocations.
+// The provided dst slice can be nil, then a new allocated slice will be returned.
 func (buff *Buffer) DumpTo(dst []float64) []float64 {
 	dst = dst[:0]
 	switch {
@@ -102,7 +104,8 @@ func (buff *Buffer) DumpTo(dst []float64) []float64 {
 }
 
 // ForEach calls provided hook for each value in the buffer in the LIFO order.
-// This method does no allocations.
+// This method does no allocations. The iterations continiues until
+// hook returns true.
 func (buff *Buffer) ForEach(op func(x float64) bool) {
 	if buff.IsEmpty() {
 		return
