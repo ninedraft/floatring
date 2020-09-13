@@ -1,4 +1,4 @@
-name: lint and build
+name: lint and test
 # This workflow is triggered on pushes to the repository.
 on: [push]
 
