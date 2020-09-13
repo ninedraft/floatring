@@ -1,0 +1,12 @@
+name: make a release
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - run: https://proxy.golang.org/github.com/ninedraft/floatring/@v/${{ github.ref }}.info > /dev/null
